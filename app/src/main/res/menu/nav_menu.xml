@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/ZhiHu"
+            android:title="比乎" />
+        <item
+            android:id="@+id/koala"
+            android:title="Koala" />
+        <item
+            android:id="@+id/pig"
+            android:title="Pig" />
+        <item
+            android:id="@+id/tiger"
+            android:title="Tiger" />
+        <item
+            android:id="@+id/whale"
+            android:title="Whale" />
+    </group>
+
+</menu>

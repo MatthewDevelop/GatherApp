@@ -1,5 +1,7 @@
 package com.foxconn.matthew.gatherapp;
 
+import com.foxconn.matthew.gatherapp.utils.HttpUtil;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

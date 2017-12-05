@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/elephant"
+        android:title="Elephant"
+        android:icon="@drawable/emoji_12"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/owl"
+        android:title="Owl"
+        android:icon="@drawable/emoji_13"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/wolf"
+        android:title="Settings"
+        android:icon="@drawable/emoji_24"
+        app:showAsAction="never"/>
+
+</menu>

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.foxconn.matthew.gatherapp.R;
 import com.foxconn.matthew.gatherapp.base.BaseActivity;
-import com.foxconn.matthew.gatherapp.gson.NewsDetail;
+import com.foxconn.matthew.gatherapp.gson.NewsDetail_Zhihu;
 import com.foxconn.matthew.gatherapp.utils.HttpUtil;
 import com.foxconn.matthew.gatherapp.utils.LogUtil;
 import com.google.gson.Gson;
@@ -43,7 +43,7 @@ public class ZhihuNewsDetailActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
-    private NewsDetail mNewsDetail;
+    private NewsDetail_Zhihu mNewsDetailZhihu;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -92,20 +92,20 @@ public class ZhihuNewsDetailActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseContent = response.body().string();
                 LogUtil.e(TAG, responseContent);
-                mNewsDetail = new Gson().fromJson(responseContent, NewsDetail.class);
+                mNewsDetailZhihu = new Gson().fromJson(responseContent, NewsDetail_Zhihu.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        collapsingToolbarLayout.setTitle(mNewsDetail.title);
-//                        mTv_title.setText(mNewsDetail.title);
+                        collapsingToolbarLayout.setTitle(mNewsDetailZhihu.title);
+//                        mTv_title.setText(mNewsDetailZhihu.title);
                         Glide.with(ZhihuNewsDetailActivity.this)
-                                .load(mNewsDetail.image)
+                                .load(mNewsDetailZhihu.image)
                                 .placeholder(R.drawable.holder)
                                 .error(R.drawable.holder)
                                 .dontAnimate()
                                 .centerCrop()
                                 .into(mIv_bg);
-                        mWv_content.loadDataWithBaseURL(null, mNewsDetail.content, "text/html", "utf-8", null);
+                        mWv_content.loadDataWithBaseURL(null, mNewsDetailZhihu.content, "text/html", "utf-8", null);
                     }
                 });
             }

@@ -12,17 +12,15 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
-import com.foxconn.matthew.gatherapp.MyApp;
 import com.foxconn.matthew.gatherapp.R;
 import com.foxconn.matthew.gatherapp.activity.ZhihuNewsDetailActivity;
 import com.foxconn.matthew.gatherapp.adapter.ZhihuNewsAdapter;
 import com.foxconn.matthew.gatherapp.base.BaseFragment;
-import com.foxconn.matthew.gatherapp.gson.LatestNews;
-import com.foxconn.matthew.gatherapp.gson.Story;
-import com.foxconn.matthew.gatherapp.gson.TopStory;
+import com.foxconn.matthew.gatherapp.gson.LatestNews_Zhihu;
+import com.foxconn.matthew.gatherapp.gson.Story_Zhihu;
+import com.foxconn.matthew.gatherapp.gson.TopStory_Zhihu;
 import com.foxconn.matthew.gatherapp.utils.HttpUtil;
 import com.foxconn.matthew.gatherapp.utils.LogUtil;
-import com.foxconn.matthew.gatherapp.views.RecycleViewDivider;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -42,11 +40,11 @@ import okhttp3.Response;
 public class ZhihuNewsFragment extends BaseFragment {
 
     private static final String STORY_ID="story_id";
-    private LatestNews mLatestNews;
+    private LatestNews_Zhihu mLatestNewsZhihu;
     private List<String> topStoryImages=new ArrayList<>();
     private List<String> topStoryTitles=new ArrayList<>();
     private List<Integer> topStoryIds=new ArrayList<>();
-    private List<Story> mStories=new ArrayList<>();
+    private List<Story_Zhihu> mStories=new ArrayList<>();
     private ZhihuNewsAdapter mNewsAdapter;
     private Context mContext;
 
@@ -90,8 +88,8 @@ public class ZhihuNewsFragment extends BaseFragment {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         //添加分割线
-        mRecyclerView.addItemDecoration(new RecycleViewDivider(
-                getActivity(), LinearLayoutManager.HORIZONTAL, 2,getResources().getColor(R.color.devideLine)));
+       /* mRecyclerView.addItemDecoration(new RecycleViewDivider(
+                getActivity(), LinearLayoutManager.HORIZONTAL, 2,getResources().getColor(R.color.devideLine)));*/
         mRecyclerView.setAdapter(mNewsAdapter);
         loadData();
     }
@@ -114,18 +112,18 @@ public class ZhihuNewsFragment extends BaseFragment {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseContent = response.body().string();
                 LogUtil.e(TAG, responseContent);
-                mLatestNews = new Gson().fromJson(responseContent, LatestNews.class);
+                mLatestNewsZhihu = new Gson().fromJson(responseContent, LatestNews_Zhihu.class);
                 topStoryTitles.clear();
                 topStoryImages.clear();
                 topStoryIds.clear();
-                for(TopStory topStory:mLatestNews.top_stories){
-                    topStoryImages.add(topStory.image);
-                    topStoryTitles.add(topStory.title);
-                    topStoryIds.add(topStory.id);
+                for(TopStory_Zhihu topStoryZhihu : mLatestNewsZhihu.top_stories){
+                    topStoryImages.add(topStoryZhihu.image);
+                    topStoryTitles.add(topStoryZhihu.title);
+                    topStoryIds.add(topStoryZhihu.id);
                 }
                 //mStories.clear();
-                for(Story story:mLatestNews.stories){
-                    mStories.add(story);
+                for(Story_Zhihu storyZhihu : mLatestNewsZhihu.stories){
+                    mStories.add(storyZhihu);
                 }
                 LogUtil.e(TAG,mStories.size()+"");
                 getActivity().runOnUiThread(new Runnable() {

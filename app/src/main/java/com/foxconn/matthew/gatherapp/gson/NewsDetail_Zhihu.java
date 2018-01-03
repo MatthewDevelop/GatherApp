@@ -28,7 +28,7 @@ import java.util.Arrays;
  * }
  */
 
-public class NewsDetail {
+public class NewsDetail_Zhihu {
 
     @SerializedName("body")
     public String content;
@@ -47,7 +47,7 @@ public class NewsDetail {
 
     @Override
     public String toString() {
-        return "NewsDetail{" +
+        return "NewsDetail_Zhihu{" +
                 "content='" + content + '\'' +
                 ", imageResource='" + imageResource + '\'' +
                 ", title='" + title + '\'' +

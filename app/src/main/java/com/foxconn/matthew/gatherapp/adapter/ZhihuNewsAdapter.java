@@ -2,7 +2,6 @@ package com.foxconn.matthew.gatherapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.util.LogTime;
 import com.foxconn.matthew.gatherapp.R;
 import com.foxconn.matthew.gatherapp.activity.ZhihuNewsDetailActivity;
-import com.foxconn.matthew.gatherapp.gson.Story;
-import com.foxconn.matthew.gatherapp.gson.TopStory;
-import com.foxconn.matthew.gatherapp.utils.LogUtil;
+import com.foxconn.matthew.gatherapp.gson.Story_Zhihu;
 
 import java.util.List;
 
@@ -30,14 +26,14 @@ import butterknife.ButterKnife;
 public class ZhihuNewsAdapter extends RecyclerView.Adapter<ZhihuNewsAdapter.ViewHolder> {
     private static final String TAG = "ZhihuNewsAdapter";
     private static final String STORY_ID="story_id";
-    private List<Story> mStories;
+    private List<Story_Zhihu> mStories;
     private Context mContext;
     @BindView(R.id.top_story_image)
     ImageView mImageView;
     @BindView(R.id.top_story_title)
     TextView mTextView;
 
-    public ZhihuNewsAdapter(List<Story> stories, Context context) {
+    public ZhihuNewsAdapter(List<Story_Zhihu> stories, Context context) {
         this.mStories = stories;
         this.mContext = context;
     }

@@ -11,9 +11,9 @@ import com.bumptech.glide.Glide;
 import com.foxconn.matthew.gatherapp.base.BaseActivityWithActionBar;
 import com.foxconn.matthew.gatherapp.R;
 import com.foxconn.matthew.gatherapp.adapter.ZhihuNewsAdapter;
-import com.foxconn.matthew.gatherapp.gson.LatestNews;
-import com.foxconn.matthew.gatherapp.gson.Story;
-import com.foxconn.matthew.gatherapp.gson.TopStory;
+import com.foxconn.matthew.gatherapp.gson.LatestNews_Zhihu;
+import com.foxconn.matthew.gatherapp.gson.Story_Zhihu;
+import com.foxconn.matthew.gatherapp.gson.TopStory_Zhihu;
 import com.foxconn.matthew.gatherapp.utils.HttpUtil;
 import com.foxconn.matthew.gatherapp.utils.LogUtil;
 import com.google.gson.Gson;
@@ -34,10 +34,10 @@ import okhttp3.Response;
  */
 
 public class ZhihuNewsActivity extends BaseActivityWithActionBar {
-    private LatestNews mLatestNews;
+    private LatestNews_Zhihu mLatestNewsZhihu;
     private List<String> topStoryImages=new ArrayList<>();
     private List<String> topStoryTitles=new ArrayList<>();
-    private List<Story> mStories=new ArrayList<>();
+    private List<Story_Zhihu> mStories=new ArrayList<>();
     private ZhihuNewsAdapter mNewsAdapter;
 
     @BindView(R.id.recyclerView)
@@ -106,16 +106,16 @@ public class ZhihuNewsActivity extends BaseActivityWithActionBar {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseContent = response.body().string();
                 LogUtil.e(TAG, responseContent);
-                mLatestNews = new Gson().fromJson(responseContent, LatestNews.class);
+                mLatestNewsZhihu = new Gson().fromJson(responseContent, LatestNews_Zhihu.class);
                 topStoryTitles.clear();
                 topStoryImages.clear();
-                for(TopStory topStory:mLatestNews.top_stories){
-                    topStoryImages.add(topStory.image);
-                    topStoryTitles.add(topStory.title);
+                for(TopStory_Zhihu topStoryZhihu : mLatestNewsZhihu.top_stories){
+                    topStoryImages.add(topStoryZhihu.image);
+                    topStoryTitles.add(topStoryZhihu.title);
                 }
                 mStories.clear();
-                for(Story story:mLatestNews.stories){
-                    mStories.add(story);
+                for(Story_Zhihu storyZhihu : mLatestNewsZhihu.stories){
+                    mStories.add(storyZhihu);
                 }
                 LogUtil.e(TAG,mStories.size()+"");
                 runOnUiThread(new Runnable() {

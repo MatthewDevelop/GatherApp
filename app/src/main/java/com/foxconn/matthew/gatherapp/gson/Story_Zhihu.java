@@ -20,7 +20,7 @@ import java.util.Arrays;
  *  }
  */
 
-public class Story {
+public class Story_Zhihu {
 
     public String[] images;
 
@@ -34,7 +34,7 @@ public class Story {
 
     @Override
     public String toString() {
-        return "Story{" +
+        return "Story_Zhihu{" +
                 "images=" + Arrays.toString(images) +
                 ", type=" + type +
                 ", id=" + id +

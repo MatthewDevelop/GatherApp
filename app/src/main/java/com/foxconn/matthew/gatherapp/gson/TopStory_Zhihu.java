@@ -4,7 +4,7 @@ package com.foxconn.matthew.gatherapp.gson;
  * Created by Matthew on 2017/11/20.
  */
 
-public class TopStory {
+public class TopStory_Zhihu {
 
     public String image;
 
@@ -18,7 +18,7 @@ public class TopStory {
 
     @Override
     public String toString() {
-        return "TopStory{" +
+        return "TopStory_Zhihu{" +
                 "image='" + image + '\'' +
                 ", type=" + type +
                 ", id=" + id +

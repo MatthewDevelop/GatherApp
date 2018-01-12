@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.foxconn.matthew.gatherapp.R;
 import com.foxconn.matthew.gatherapp.fragment.WanAndroidFragment;
 import com.foxconn.matthew.gatherapp.fragment.ZhihuNewsFragment;
+import com.foxconn.matthew.gatherapp.test.fragment.PagerTestFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Matthew on 2017/11/21.
+ * @author:Matthew
+ * @date:2018/1/12
+ * @email:guocheng0816@163.com
  */
 
 public class MainActivity_ extends AppCompatActivity {
@@ -79,6 +82,7 @@ public class MainActivity_ extends AppCompatActivity {
         mFragments=new ArrayList<>();
         mFragments.add(new ZhihuNewsFragment());
         mFragments.add(new WanAndroidFragment());
+        mFragments.add(new PagerTestFragment());
     }
 
     private void initView() {
@@ -99,6 +103,9 @@ public class MainActivity_ extends AppCompatActivity {
                         break;
                     case R.id.WanAndroid:
                         loadFragment(1);
+                        break;
+                    case R.id.pig:
+                        loadFragment(2);
                         break;
                     default:
                         break;

@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.foxconn.matthew.gatherapp.adapter.ZhihuNewsAdapter;
 import com.foxconn.matthew.gatherapp.base.BaseActivityWithActionBar;
 import com.foxconn.matthew.gatherapp.R;
-import com.foxconn.matthew.gatherapp.adapter.ZhihuNewsAdapter;
 import com.foxconn.matthew.gatherapp.gson.LatestNews_Zhihu;
 import com.foxconn.matthew.gatherapp.gson.Story_Zhihu;
 import com.foxconn.matthew.gatherapp.gson.TopStory_Zhihu;
@@ -38,6 +38,7 @@ public class ZhihuNewsActivity extends BaseActivityWithActionBar {
     private List<String> topStoryImages=new ArrayList<>();
     private List<String> topStoryTitles=new ArrayList<>();
     private List<Story_Zhihu> mStories=new ArrayList<>();
+    private List<Integer> topStoryIds=new ArrayList<>();
     private ZhihuNewsAdapter mNewsAdapter;
 
     @BindView(R.id.recyclerView)
@@ -80,7 +81,7 @@ public class ZhihuNewsActivity extends BaseActivityWithActionBar {
                 loadData();
             }
         });
-        mNewsAdapter=new ZhihuNewsAdapter(mStories,ZhihuNewsActivity.this);
+        //mNewsAdapter=new ZhihuNewsAdapter(mStories, topStoryIds, topStoryImages, topStoryTitles, mTopStorys, ZhihuNewsActivity.this);
         LinearLayoutManager layoutManager=new LinearLayoutManager(ZhihuNewsActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mNewsAdapter);

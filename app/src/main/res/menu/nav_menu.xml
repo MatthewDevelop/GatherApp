@@ -5,8 +5,8 @@
             android:id="@+id/ZhiHu"
             android:title="比乎" />
         <item
-            android:id="@+id/koala"
-            android:title="Koala" />
+            android:id="@+id/WanAndroid"
+            android:title="玩Android" />
         <item
             android:id="@+id/pig"
             android:title="Pig" />

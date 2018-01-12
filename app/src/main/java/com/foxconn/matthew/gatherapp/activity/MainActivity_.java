@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -20,7 +21,11 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.foxconn.matthew.gatherapp.R;
+import com.foxconn.matthew.gatherapp.fragment.WanAndroidFragment;
 import com.foxconn.matthew.gatherapp.fragment.ZhihuNewsFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +52,7 @@ public class MainActivity_ extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
 
+    List<Fragment> mFragments;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +70,15 @@ public class MainActivity_ extends AppCompatActivity {
     }
 
     private void init() {
-        mFragmentManager=getSupportFragmentManager();
-        mFragmentTransaction=mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.container,new ZhihuNewsFragment());
-        mFragmentTransaction.commit();
+        mFragmentManager = getSupportFragmentManager();
+        initFragments();
+        loadFragment(0);
+    }
+
+    private void initFragments() {
+        mFragments=new ArrayList<>();
+        mFragments.add(new ZhihuNewsFragment());
+        mFragments.add(new WanAndroidFragment());
     }
 
     private void initView() {
@@ -77,14 +88,28 @@ public class MainActivity_ extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.home_bt);
         }
-        mNavigationView.setCheckedItem(R.id.ZhiHu);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id=item.getItemId();
+                switch (id) {
+                    case R.id.ZhiHu:
+                        loadFragment(0);
+                        break;
+                    case R.id.WanAndroid:
+                        loadFragment(1);
+                        break;
+                    default:
+                        break;
+                }
                 mDrawerLayout.closeDrawers();
                 return true;
             }
         });
+
+        mNavigationView.setCheckedItem(R.id.ZhiHu);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +121,16 @@ public class MainActivity_ extends AppCompatActivity {
                 }).show();
             }
         });
+    }
+
+    /**
+     * 加载碎片布局
+     * @param index
+     */
+    public void loadFragment(int index){
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        mFragmentTransaction.replace(R.id.container, mFragments.get(index));
+        mFragmentTransaction.commit();
     }
 
     @Override

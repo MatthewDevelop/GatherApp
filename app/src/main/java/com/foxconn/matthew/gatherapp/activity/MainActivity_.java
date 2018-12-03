@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.foxconn.matthew.gatherapp.R;
+import com.foxconn.matthew.gatherapp.fragment.AndroidServerFragment;
 import com.foxconn.matthew.gatherapp.fragment.WanAndroidFragment;
 import com.foxconn.matthew.gatherapp.fragment.ZhihuNewsFragment;
 import com.foxconn.matthew.gatherapp.test.fragment.PagerTestFragment;
@@ -83,6 +84,7 @@ public class MainActivity_ extends AppCompatActivity {
         mFragments.add(new ZhihuNewsFragment());
         mFragments.add(new WanAndroidFragment());
         mFragments.add(new PagerTestFragment());
+        //mFragments.add(new AndroidServerFragment());
     }
 
     private void initView() {
@@ -106,6 +108,9 @@ public class MainActivity_ extends AppCompatActivity {
                         break;
                     case R.id.pig:
                         loadFragment(2);
+                        break;
+                    case R.id.whale:
+                        //loadFragment(3);
                         break;
                     default:
                         break;

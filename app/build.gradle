@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.foxconn.matthew.gatherapp"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -47,4 +47,6 @@ dependencies {
     //图片轮播框架
     //implementation 'com.bigkoo:convenientbanner:2.0.5'
     compile 'cn.bingoogolapple:bga-banner:2.1.8@aar'
+
+    implementation 'com.koushikdutta.async:androidasync:2.+'
 }
